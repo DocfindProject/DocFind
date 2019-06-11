@@ -1,0 +1,63 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"   
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<f:view contentType="text/html"></f:view>
+
+<h:head>
+
+</h:head>
+
+
+<h:body>
+	<h:form>
+	
+	
+	
+	<!-- Form de Cadastro -->
+		<h:panelGrid id="panelgrid" columns="2" cellpadding="5">
+		
+		<p:outputLabel for="console" value="Tipo de documento:" />
+        <p:selectOneMenu id="console" value="#{selectOneMenuView.console}" style="width:125px">
+            <f:selectItem itemLabel="" itemValue="" />
+            <f:selectItem itemLabel="CPF" itemValue="cpf" />
+            <f:selectItem itemLabel="RG" itemValue="rg" />
+            <f:selectItem itemLabel="CNH" itemValue="cnh" />
+            <f:selectItem itemLabel="PASSAPORTE" itemValue="pass" />
+        </p:selectOneMenu>
+		
+			<p:outputLabel value="Nome:" for="acNome" />
+			<p:autoComplete id="acNome" value="#{itemdocMB.itemdoc.nomepessoa}" />
+			<p:outputLabel value="Numero:" for="acNumero" />
+			<p:autoComplete id="acNumero" value="#{itemdocMB.itemdoc.numregdoc}" />
+			<p:outputLabel value="Descricao:" for="acDescricao" />
+			<p:autoComplete id="acDescricao" value="#{itemdocMB.itemdoc.descdoc}" />
+ 			<p:growl id="messages" /> 
+			<p:commandButton value="salvar" action="#{itemdocMB.salvar}"
+				type="button" update="panelgrid" icon="ui-icon-disk">
+			</p:commandButton>
+
+
+			<!-- Grid de Consulta -->
+			<p:dataTable var="c" value="#{itemdocMB.list}">
+				<p:column headerText="Nome no documento">
+					<h:outputText value="#{c.nomepessoa}" />
+				</p:column>
+				<p:column headerText="N do reg do documento">
+					<h:outputText value="#{c.numregdoc}" />
+				</p:column>
+				<p:column headerText="descricao">
+					<h:outputText value="#{c.descdoc}" />
+				</p:column>
+			</p:dataTable>
+		</h:panelGrid>
+	</h:form>
+	
+</h:body>
+
+
+</html>
